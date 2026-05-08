@@ -109,13 +109,21 @@
     font-feature-settings: 'cv11', 'cv01', 'ss01';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Gradient on html so it's always behind everything */
+    background: linear-gradient(135deg, #F2F0EC 0%, #EAE8E3 100%);
+    background-attachment: fixed;
+    min-height: 100%;
   }
 
   body {
-    background: linear-gradient(160deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
-    background-attachment: fixed;
+    background: transparent;
     min-height: 100vh;
     color: var(--color-text);
+  }
+
+  #root {
+    min-height: 100vh;
+    background: transparent;
   }
 }
 

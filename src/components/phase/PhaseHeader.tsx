@@ -57,7 +57,7 @@ export function PhaseHeader({ phase, progress, onBack }: PhaseHeaderProps) {
             style={{
               fontSize: 22,
               fontWeight: 500,
-              color: 'var(--color-text)',
+              color: `var(--phase-${phase.colorIndex}-text)`,
               letterSpacing: '-0.02em',
               lineHeight: 1.2,
             }}

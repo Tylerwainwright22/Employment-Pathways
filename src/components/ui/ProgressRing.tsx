@@ -31,27 +31,29 @@ export function ProgressRing({
       viewBox={`0 0 ${size} ${size}`}
       style={{ transform: 'rotate(-90deg)', flexShrink: 0 }}
     >
-      {/* Track */}
+      {/* Track — CSS style prop so var() resolves */}
       <circle
         cx={size / 2}
         cy={size / 2}
         r={radius}
         fill="none"
-        stroke="rgba(0,0,0,0.07)"
         strokeWidth={strokeWidth}
+        style={{ stroke: 'rgba(0,0,0,0.07)' }}
       />
-      {/* Fill */}
+      {/* Fill — CSS style prop required for CSS custom property resolution */}
       <circle
         cx={size / 2}
         cy={size / 2}
         r={radius}
         fill="none"
-        stroke={`var(--phase-${colorIndex}-main)`}
         strokeWidth={strokeWidth}
         strokeLinecap="round"
         strokeDasharray={circumference}
         strokeDashoffset={offset}
-        style={{ transition: 'stroke-dashoffset 600ms ease-out' }}
+        style={{
+          stroke: `var(--phase-${colorIndex}-main)`,
+          transition: 'stroke-dashoffset 600ms ease-out',
+        }}
       />
     </svg>
   )

@@ -15,7 +15,7 @@ export function AppShell({ currentRole, onRoleChange, children }: AppShellProps)
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        background: 'linear-gradient(135deg, #F2F0EC 0%, #EAE8E3 100%)',
+        background: 'linear-gradient(135deg, #E8E4DB 0%, #D8D3C8 35%, #DDD8CE 65%, #E4E0D8 100%)',
         backgroundAttachment: 'fixed',
       }}
     >

@@ -18,7 +18,10 @@ export function GlassCard({
   const base = interactive ? 'glass-card-interactive' : 'glass-card'
   return (
     <div className={`${base} ${className}`} onClick={onClick} style={style}>
-      {children}
+      {/* z-index: 1 keeps content above the ::after surface-highlight layer */}
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        {children}
+      </div>
     </div>
   )
 }

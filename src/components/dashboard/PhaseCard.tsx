@@ -34,15 +34,15 @@ export function PhaseCard({ phase, progress, onClick, animationDelay = 0 }: Phas
         // Glass base — shifts to phase tint on hover
         background: hovered
           ? `var(--phase-${phase.colorIndex}-tint)`
-          : 'rgba(255, 255, 255, 0.72)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
+          : 'rgba(255, 255, 255, 0.15)',
+        backdropFilter: 'blur(20px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(20px) saturate(180%)',
         border: hovered
           ? `1px solid var(--phase-${phase.colorIndex}-border)`
           : '1px solid rgba(255, 255, 255, 0.80)',
         boxShadow: hovered
-          ? '0 8px 48px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.90), inset 0 -1px 0 rgba(0,0,0,0.03)'
-          : '0 2px 40px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.90), inset 0 -1px 0 rgba(0,0,0,0.03)',
+          ? '0 16px 48px rgba(31, 38, 135, 0.22), inset 0 4px 20px rgba(255, 255, 255, 0.40)'
+          : '0 8px 32px rgba(31, 38, 135, 0.15), inset 0 4px 20px rgba(255, 255, 255, 0.30)',
         transform: hovered ? 'translateY(-3px)' : 'translateY(0)',
         transition:
           'background 200ms ease-out, border-color 200ms ease-out, box-shadow 200ms ease-out, transform 200ms ease-out',

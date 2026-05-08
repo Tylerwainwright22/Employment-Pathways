@@ -10,7 +10,15 @@ interface AppShellProps {
 
 export function AppShell({ currentRole, onRoleChange, children }: AppShellProps) {
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        background: 'linear-gradient(135deg, #F2F0EC 0%, #EAE8E3 100%)',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       <Header currentRole={currentRole} onRoleChange={onRoleChange} />
       <main
         style={{

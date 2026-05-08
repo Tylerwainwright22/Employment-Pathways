@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { PhaseChip } from '../ui/PhaseChip'
 import { ProgressRing } from '../ui/ProgressRing'
@@ -11,12 +12,15 @@ interface PhaseCardProps {
 }
 
 export function PhaseCard({ phase, progress, onClick, animationDelay = 0 }: PhaseCardProps) {
+  const [hovered, setHovered] = useState(false)
   const isComplete = progress.total > 0 && progress.completed === progress.total
 
   return (
     <div
-      className="glass-card-interactive animate-fade-in-up"
+      className="animate-fade-in-up"
       onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       style={{
         padding: 'var(--space-4)',
         animationDelay: `${animationDelay}ms`,
@@ -25,9 +29,26 @@ export function PhaseCard({ phase, progress, onClick, animationDelay = 0 }: Phas
         gap: 14,
         position: 'relative',
         overflow: 'hidden',
+        cursor: 'pointer',
+        borderRadius: 'var(--radius-card)',
+        // Glass base — shifts to phase tint on hover
+        background: hovered
+          ? `var(--phase-${phase.colorIndex}-tint)`
+          : 'rgba(255, 255, 255, 0.72)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        border: hovered
+          ? `1px solid var(--phase-${phase.colorIndex}-border)`
+          : '1px solid rgba(255, 255, 255, 0.80)',
+        boxShadow: hovered
+          ? '0 8px 48px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.90), inset 0 -1px 0 rgba(0,0,0,0.03)'
+          : '0 2px 40px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.90), inset 0 -1px 0 rgba(0,0,0,0.03)',
+        transform: hovered ? 'translateY(-3px)' : 'translateY(0)',
+        transition:
+          'background 200ms ease-out, border-color 200ms ease-out, box-shadow 200ms ease-out, transform 200ms ease-out',
       }}
     >
-      {/* Subtle phase tint on top-right corner */}
+      {/* Phase tint orb — top-right accent */}
       <div
         style={{
           position: 'absolute',
@@ -38,6 +59,8 @@ export function PhaseCard({ phase, progress, onClick, animationDelay = 0 }: Phas
           borderRadius: '50%',
           background: `var(--phase-${phase.colorIndex}-glass)`,
           pointerEvents: 'none',
+          opacity: hovered ? 0 : 1,
+          transition: 'opacity 200ms ease-out',
         }}
       />
 
@@ -87,7 +110,6 @@ export function PhaseCard({ phase, progress, onClick, animationDelay = 0 }: Phas
           <div style={{ fontSize: 12, color: 'var(--color-text-2)', fontWeight: 400 }}>
             {progress.completed} of {progress.total} complete
           </div>
-          {/* Mini progress bar */}
           <div className="progress-track" style={{ width: 80 }}>
             <div
               className="progress-fill"
